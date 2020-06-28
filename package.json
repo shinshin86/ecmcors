@@ -1,0 +1,20 @@
+{
+  "name": "ecmcors",
+  "version": "0.1.0",
+  "description": "Easily configure multiple CORS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cors",
+    "express",
+    "middleware",
+    "easy"
+  ],
+  "author": "shinshin86 <shinshin86npm@gmail.com> (https://github.com/shinshin86)",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
+}
