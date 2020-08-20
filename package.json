@@ -7,7 +7,8 @@
     "test": "npm run test:not-set-config-var && npm run test:set-config-var && npm run test:set-multi-config-var",
     "test:not-set-config-var": "mocha test/index.js -g 'Not set CORS_ALLOW_LIST'",
     "test:set-config-var": "mocha test/index.js -g 'Set CORS_ALLOW_LIST'",
-    "test:set-multi-config-var": "mocha test/index.js -g 'Set multi origin CORS_ALLOW_LIST'"
+    "test:set-multi-config-var": "mocha test/index.js -g 'Set multi origin CORS_ALLOW_LIST'",
+    "fmt": "prettier --write '**/*.{js,json,md}'"
   },
   "keywords": [
     "cors",
@@ -17,11 +18,15 @@
   ],
   "author": "shinshin86 <shinshin86npm@gmail.com> (https://github.com/shinshin86)",
   "license": "MIT",
+  "prettier": {
+    "singleQuote": true
+  },
   "dependencies": {
     "cors": "^2.8.5"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^8.1.1"
+    "mocha": "^8.1.1",
+    "prettier": "^2.0.5"
   }
 }
