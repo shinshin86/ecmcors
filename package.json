@@ -18,6 +18,14 @@
   ],
   "author": "shinshin86 <shinshin86npm@gmail.com> (https://github.com/shinshin86)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinshin86/ecmcors.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shinshin86/ecmcors/issues"
+  },
+  "homepage": "https://github.com/shinshin86/ecmcors#readme",
   "prettier": {
     "singleQuote": true
   },
