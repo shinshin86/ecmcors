@@ -1,6 +1,6 @@
 # ecmcors
 
-**WIP**
+[![Build Status](https://travis-ci.org/shinshin86/ecmcors.svg?branch=master)](https://travis-ci.org/shinshin86/ecmcors)
 
 Easily configure multiple CORS.
 
@@ -43,4 +43,18 @@ app.get('/', ecmcors, (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
+```
+
+## Development
+
+Test
+
+```bash
+npm run test
+```
+
+Code format
+
+```bash
+npm run fmt
 ```
