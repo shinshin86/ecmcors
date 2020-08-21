@@ -12,94 +12,102 @@ describe('ecmcors', () => {
     return new FakeResponse();
   };
 
-  describe('Not set CORS_ALLOW_LIST', () => {
-    beforeEach(() => {
-      process.env.CORS_ALLOW_LIST = '';
-    });
+  describe('GET request', () => {
+    const requestMethod = 'GET';
 
-    it("Don't set the environment variables, all origins are not allowed.", (done) => {
-      const ecmcors = require('../index');
-
-      const req = fakeRequest('GET');
-      const res = fakeResponse();
-
-      ecmcors(req, res, (error) => {
-        expect(error.toString()).to.include(errorMessage);
-        done();
+    describe('Not set CORS_ALLOW_LIST', () => {
+      beforeEach(() => {
+        process.env.CORS_ALLOW_LIST = '';
       });
-    });
-  });
 
-  describe('Set CORS_ALLOW_LIST (http://example.com)', () => {
-    let ecmcors;
-    beforeEach(() => {
-      process.env.CORS_ALLOW_LIST = 'http://example.com';
+      it("Don't set the environment variables, all origins are not allowed.", (done) => {
+        const ecmcors = require('../index');
 
-      ecmcors = require('../index');
-    });
+        const req = fakeRequest(requestMethod);
+        const res = fakeResponse();
 
-    it('Only authorized origin will be allowed to pass. (http://example.com)', (done) => {
-      const req = fakeRequest('GET');
-      const res = fakeResponse();
-
-      ecmcors(req, res, (error) => {
-        expect(error).to.be.undefined;
-        done();
+        ecmcors(req, res, (error) => {
+          expect(error.toString()).to.include(errorMessage);
+          done();
+        });
       });
     });
 
-    it('Only authorized origin will be allowed to pass. (http://example.net is not allowed)', (done) => {
-      const req = fakeRequest('GET', {
-        origin: 'http://example.net',
+    describe('Set CORS_ALLOW_LIST (http://example.com)', () => {
+      beforeEach(() => {
+        process.env.CORS_ALLOW_LIST = 'http://example.com';
       });
-      const res = fakeResponse();
 
-      ecmcors(req, res, (error) => {
-        expect(error.toString()).to.include(errorMessage);
-        done();
+      it('Only authorized origin will be allowed to pass. (http://example.com)', (done) => {
+        const ecmcors = require('../index');
+
+        const req = fakeRequest(requestMethod);
+        const res = fakeResponse();
+
+        ecmcors(req, res, (error) => {
+          expect(error).to.be.undefined;
+          done();
+        });
       });
-    });
-  });
 
-  describe('Set multi origin CORS_ALLOW_LIST (http://example.com, http://example.net)', () => {
-    let ecmcors;
-    beforeEach(() => {
-      process.env.CORS_ALLOW_LIST = 'http://example.com,http://example.net';
+      it('Only authorized origin will be allowed to pass. (http://example.net is not allowed)', (done) => {
+        const ecmcors = require('../index');
 
-      ecmcors = require('../index');
-    });
+        const req = fakeRequest(requestMethod, {
+          origin: 'http://example.net',
+        });
+        const res = fakeResponse();
 
-    it('Only authorized origin will be allowed to pass. (http://example.com)', (done) => {
-      const req = fakeRequest('GET');
-      const res = fakeResponse();
-
-      ecmcors(req, res, (error) => {
-        expect(error).to.be.undefined;
-        done();
-      });
-    });
-
-    it('Only authorized origin will be allowed to pass. (http://example.net)', (done) => {
-      const req = fakeRequest('GET', {
-        origin: 'http://example.net',
-      });
-      const res = fakeResponse();
-
-      ecmcors(req, res, (error) => {
-        expect(error).to.be.undefined;
-        done();
+        ecmcors(req, res, (error) => {
+          expect(error.toString()).to.include(errorMessage);
+          done();
+        });
       });
     });
 
-    it('Only authorized origin will be allowed to pass. (http://example.org is not allowed)', (done) => {
-      const req = fakeRequest('GET', {
-        origin: 'http://example.org',
+    describe('Set multi origin CORS_ALLOW_LIST (http://example.com, http://example.net)', () => {
+      beforeEach(() => {
+        process.env.CORS_ALLOW_LIST = 'http://example.com,http://example.net';
       });
-      const res = fakeResponse();
 
-      ecmcors(req, res, (error) => {
-        expect(error.toString()).to.include(errorMessage);
-        done();
+      it('Only authorized origin will be allowed to pass. (http://example.com)', (done) => {
+        const ecmcors = require('../index');
+
+        const req = fakeRequest(requestMethod);
+        const res = fakeResponse();
+
+        ecmcors(req, res, (error) => {
+          expect(error).to.be.undefined;
+          done();
+        });
+      });
+
+      it('Only authorized origin will be allowed to pass. (http://example.net)', (done) => {
+        const ecmcors = require('../index');
+
+        const req = fakeRequest(requestMethod, {
+          origin: 'http://example.net',
+        });
+        const res = fakeResponse();
+
+        ecmcors(req, res, (error) => {
+          expect(error).to.be.undefined;
+          done();
+        });
+      });
+
+      it('Only authorized origin will be allowed to pass. (http://example.org is not allowed)', (done) => {
+        const ecmcors = require('../index');
+
+        const req = fakeRequest(requestMethod, {
+          origin: 'http://example.org',
+        });
+        const res = fakeResponse();
+
+        ecmcors(req, res, (error) => {
+          expect(error.toString()).to.include(errorMessage);
+          done();
+        });
       });
     });
   });
