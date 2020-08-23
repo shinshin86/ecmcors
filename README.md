@@ -6,12 +6,10 @@ Easily configure multiple CORS.
 
 ## Install
 
-I have yet to publish to npm.
-
 ```bash
-npm install shinshin86/ecmcors
+npm install ecmcors
 # or
-yarn add shinshin86/ecmcors
+yarn add ecmcors
 ```
 
 ## Usage
